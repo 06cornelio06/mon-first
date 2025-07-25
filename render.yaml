@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: laravel-app
+    env: php
+    buildCommand: |
+      composer install --optimize-autoloader --no-dev
+      php artisan key:generate
+      php artisan migrate --force || true
+      php artisan config:clear
+      php artisan route:clear
+      php artisan view:clear
+      php artisan cache:clear
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: php artisan serve --host 0.0.0.0 --port 10000
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://laravel-app.onrender.com
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: dpg-d21qjkre5dus7390cfng-a
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: tina_d2gy
+      - key: DB_USERNAME
+        value: coco
+      - key: DB_PASSWORD
+        value: 5ojrZPPteG3uaPeKy8hLkxLyhBwZwgJ6

@@ -1,0 +1,1 @@
+<img class="h-20 w-auto" src="{{ asset('images/R.png') }}" alt="Viroscope"
