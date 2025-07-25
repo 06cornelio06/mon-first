@@ -25,12 +25,12 @@ services:
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        value: dpg-xxxxx-a  # 🔁 À REMPLACER par le vrai host PostgreSQL Render
+        value: dpg-d21qjkre5dus7390cfng-a
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
-        value: nom_de_ta_db  # 🔁 À REMPLACER par le vrai nom de ta base
+        value: tina_d2gy
       - key: DB_USERNAME
-        value: utilisateur_pg  # 🔁 À REMPLACER par ton user PostgreSQL
+        value: coco
       - key: DB_PASSWORD
-        value: motdepasse_pg  # 🔁 À REMPLACER par ton mot de passe PostgreSQL
+        value: 5ojrZPPteG3uaPeKy8hLkxLyhBwZwgJ6
