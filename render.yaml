@@ -20,7 +20,7 @@ services:
       - key: APP_DEBUG
         value: false
       - key: APP_URL
-        value: https://viroscope-laravel.onrender.com
+        value: https://premier-essaie-park.com.onrender.com
 
       - key: DB_CONNECTION
         value: pgsql
