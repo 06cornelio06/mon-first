@@ -1,7 +1,9 @@
 services:
   - type: web
-    name: laravel-app
-    env: php
+    name: viroscope-laravel
+    runtime: php
+    repo: https://github.com/06cornelio06/mon-first.git
+    branch: main
     buildCommand: |
       composer install --optimize-autoloader --no-dev
       php artisan key:generate
@@ -9,11 +11,10 @@ services:
       php artisan config:clear
       php artisan route:clear
       php artisan view:clear
-      php artisan cache:clear
       php artisan config:cache
       php artisan route:cache
       php artisan view:cache
-    startCommand: php artisan serve --host 0.0.0.0 --port 10000
+    startCommand: heroku-php-apache2 public/
     envVars:
       - key: APP_ENV
         value: production
@@ -22,16 +23,18 @@ services:
       - key: APP_DEBUG
         value: false
       - key: APP_URL
-        value: https://laravel-app.onrender.com
+        value: https://viroscope-laravel.onrender.com
+
+      # Remplace les valeurs ci-dessous par celles de ta base PostgreSQL sur Render
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        value: dpg-d21qjkre5dus7390cfng-a
+        value: dpg-xxxxx-a  # ← remplace par l'hôte réel
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
-        value: tina_d2gy
+        value: viroscope_db  # ← nom réel de ta base
       - key: DB_USERNAME
-        value: coco
+        value: viroscope_user  # ← utilisateur réel
       - key: DB_PASSWORD
-        value: 5ojrZPPteG3uaPeKy8hLkxLyhBwZwgJ6
+        value: mot_de_passe_pg  # ← mot de passe réel
