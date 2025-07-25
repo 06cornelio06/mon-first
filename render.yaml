@@ -2,35 +2,36 @@ services:
   - type: web
     name: viroscope-laravel
     runtime: php
-    repo: https://github.com/06cornelio06/mon-first.git
+    plan: free
+    region: frankfurt
+    repo: https://github.com/06cornelio06/viroscope.git
     branch: main
+    envVars:
+      - key: APP_KEY
+        sync: false
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://osogbea.onrender.com
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
     buildCommand: |
       composer install --optimize-autoloader --no-dev
-      php artisan key:generate
+      php artisan key:generate --force
       php artisan migrate --force || true
       php artisan config:cache
       php artisan route:cache
       php artisan view:cache
-    startCommand: heroku-php-apache2 public/
-    envVars:
-      - key: APP_ENV
-        value: production
-      - key: APP_KEY
-        generateValue: true
-      - key: APP_DEBUG
-        value: false
-      - key: APP_URL
-        value: https://premier-essaie-park.com.onrender.com
-
-      - key: DB_CONNECTION
-        value: pgsql
-      - key: DB_HOST
-        value: dpg-d21qjkre5dus7390cfng-a
-      - key: DB_PORT
-        value: 5432
-      - key: DB_DATABASE
-        value: tina_d2gy
-      - key: DB_USERNAME
-        value: coco
-      - key: DB_PASSWORD
-        value: 5ojrZPPteG3uaPeKy8hLkxLyhBwZwgJ6
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
